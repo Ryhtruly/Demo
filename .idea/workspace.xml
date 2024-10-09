@@ -4,7 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="14fd1dbc-7cb9-4aef-9943-ab15342a15fe" name="Changes" comment="" />
+    <list default="true" id="14fd1dbc-7cb9-4aef-9943-ab15342a15fe" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Main.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Collide.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Object.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/block.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/confige.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/fire.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/game.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/gui.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/player.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/spriteLoader.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -20,24 +32,30 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="QODANA_PROBLEMS_VIEW_TAB" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
 }</component>
   <component name="ProjectId" id="2lbm05fK8RJxflFsDJ1E1GkZrfa" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python.Main.executor&quot;: &quot;Run&quot;,
-    &quot;Python.main.executor&quot;: &quot;Run&quot;,
-    &quot;Python.player.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/PC/python code/pyG&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.Main.executor": "Run",
+    "Python.main.executor": "Run",
+    "Python.player.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/Users/PC/python code/pyG"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Python.Main">
     <configuration name="Main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="pyG" />
