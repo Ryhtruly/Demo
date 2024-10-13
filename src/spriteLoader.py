@@ -1,9 +1,9 @@
 import pygame
 from os import listdir
 from os.path import isfile, join
-from src.confige import WIDTH, HEIGHT
+from src.confige import WIDTH, HEIGHT, DATA_FILE
 import os
-
+import pandas as pd
 
 def flip(sprites):
    return [pygame.transform.flip(sprite, True, False) for sprite in sprites]
@@ -68,7 +68,7 @@ def get_background(name) :
    return tiles, image
 
 
-def draw(window , background, bg_image, player, object , offset_x):
+def draw(window , background, bg_image, player, object , offset_x, score_board):
    for tile in background:
        window.blit(bg_image, tile)
 
@@ -76,6 +76,17 @@ def draw(window , background, bg_image, player, object , offset_x):
    for obj in object:
        obj.draw(window, offset_x)
 
+   score_board.draw_score(window)
 
    player.draw(window, offset_x)
    pygame.display.update()
+
+
+def get_highest_score():
+    try:
+        leaderboard = pd.read_csv(DATA_FILE)
+        if leaderboard.empty:
+            return 0
+        return leaderboard['score'].iloc[0]
+    except (FileNotFoundError, pd.errors.EmptyDataError):
+        return 0

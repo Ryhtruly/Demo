@@ -12,8 +12,6 @@ class Player(pygame.sprite.Sprite):
 
    def __init__(self, x , y , width, height):
        super().__init__()
-
-
        self.rect = pygame.Rect(x, y , width, height)
        self.x_vel = 0
        self.y_vel = 0
@@ -25,6 +23,7 @@ class Player(pygame.sprite.Sprite):
        self.hit = False
        self.hit_count = 0
        self.is_dead = False
+       self.count = 0
 
 
        self.SPRITES = load_sprite_sheets("MainCharacters", "VirtualGuy", 32, 32, True)

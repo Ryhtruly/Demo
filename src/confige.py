@@ -10,3 +10,6 @@ PLAYER_SPEED = 5
 GRAVITY = 1
 JUMP_VELOCITY = 15
 FPS = 60
+FONT_SCORE = ("Press Start 2P", 28, True, False)
+SCORE_POS = (10, 10)
+DATA_FILE = "data/leaderboard.csv"
