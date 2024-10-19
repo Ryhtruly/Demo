@@ -15,7 +15,9 @@ def handle_vertical_collision(player, objects, dy):
                player.hit_head()
                player.y_vel = 0
 
+
            collided_objects.append(obj)
+
 
    return collided_objects
 
@@ -28,6 +30,7 @@ def collide(player, objects, dx):
        if pygame.sprite.collide_mask(player, obj):
            collided_object = obj
            break
+
 
    player.move(-dx, 0)
    player.update()
@@ -56,8 +59,3 @@ def handle_move(player, objects):
    for obj in to_check:
        if obj and obj.name == "fire":
            player.make_hit()
-       elif obj and obj.name == "saw":
-           player.defeat()
-
-   return player.is_defeated
-

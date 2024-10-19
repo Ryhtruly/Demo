@@ -9,6 +9,7 @@ class Player(pygame.sprite.Sprite):
    SPRITES = load_sprite_sheets("MainCharacters","VirtualGuy", 32, 32, True)
    ANIMATION_DELAY = 3
 
+
    def __init__(self, x , y , width, height):
        super().__init__()
 
@@ -24,57 +25,59 @@ class Player(pygame.sprite.Sprite):
        self.hit = False
        self.hit_count = 0
        self.is_dead = False
-       self.is_defeated = False
 
 
        self.SPRITES = load_sprite_sheets("MainCharacters", "VirtualGuy", 32, 32, True)
        self.sprite = self.SPRITES["idle_" + self.direction][0]
 
-   def jump(self, force=None):
-       if force:
-           self.y_vel = force
-       else:
-           self.y_vel = -self.GRAVITY * 9
+
+   def jump(self):
+       self.y_vel = -self.GRAVITY * 9
        self.animation_count = 0
        self.jump_count += 1
        if self.jump_count == 1:
            self.fall_count = 0
 
-   def make_hit(self):
-       if not self.hit and not self.is_dead:
-           self.hit = True
-           self.hit_count = 0
-           self.is_dead = True
 
    def move(self, dx, dy):
        self.rect.x += dx
        self.rect.y += dy
 
-   def move_left(self, vel):
+
+   def make_hit(self):
        if not self.is_dead:
-           self.x_vel = -vel
-           if self.direction != "left":
-               self.direction = "left"
-               self.animation_count = 0
+           self.hit = True
+           self.hit_count += 1
+           if self.hit_count >= 2:
+               self.is_dead = True
+
+
+   def move_left(self, vel):
+       self.x_vel = -vel
+       if self.direction != "left":
+           self.direction = "left"
+           self.animation_count = 0
+
 
    def move_right(self, vel):
-       if not self.is_dead:
-           self.x_vel = vel
-           if self.direction != "right":
-               self.direction = "right"
-               self.animation_count = 0
+       self.x_vel = vel
+       if self.direction != "right":
+           self.direction = "right"
+           self.animation_count = 0
+
 
    def loop(self, fps):
        if not self.is_dead:
-           self.y_vel += min(1, (self.fall_count / fps) * self.GRAVITY)
-           self.move(self.x_vel, self.y_vel)
-           self.fall_count += 1
+             self.y_vel += min(1, (self.fall_count / fps) * self.GRAVITY)
+             self.move(self.x_vel, self.y_vel)
+             if self.hit:
+                   self.hit_count += 1
+             if self.hit_count > fps * 2:
+                  self.hit = False
+                  self.hit_count = 0
 
-       if self.hit:
-           self.hit_count += 1
-       if self.hit_count > fps * 2:
-           self.is_dead = True
 
+       self.fall_count += 1
        self.update_sprite()
 
 
@@ -112,22 +115,18 @@ class Player(pygame.sprite.Sprite):
            self.animation_count += 1
            self.update()
 
-   def update(self):
-       if not self.is_defeated:
-           if self.sprite:
-               self.rect = self.sprite.get_rect(topleft=(self.rect.x, self.rect.y))
-               self.mask = pygame.mask.from_surface(self.sprite)
 
-   def defeat(self):
-       self.is_defeated = True
-       self.x_vel = 0
-       self.y_vel = 0
+   def update(self):
+       if self.sprite:
+           self.rect = self.sprite.get_rect(topleft=(self.rect.x, self.rect.y))
+           self.mask = pygame.mask.from_surface(self.sprite)
+
 
    def draw(self, win, offset_x):
        if self.sprite:
            win.blit(self.sprite, (self.rect.x - offset_x, self.rect.y))
        if self.is_dead:
-           font = pygame.font.SysFont('Arial', 64)
-           text = font.render('DEFEAT', True, (255, 0, 0))
+           font = pygame.font.SysFont('Pixeled', 64)
+           text = font.render('DEFEAT', True, (255, 255, 255))
            text_rect = text.get_rect(center=(WIDTH // 2, HEIGHT // 2))
            win.blit(text, text_rect)
