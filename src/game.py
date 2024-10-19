@@ -6,7 +6,8 @@ from src.gui import draw_intro_screen, check_button_event
 from src.Collide import handle_move
 from src.confige import WIDTH, HEIGHT, FPS
 from src.spriteLoader import get_background, draw
-
+from src.fan import Fan
+from src.saw import Saw, Saw_Collum, Saw_Row
 
 window = pygame.display.set_mode((WIDTH, HEIGHT))
 
@@ -22,19 +23,13 @@ def main(window):
        if action == "start":
            break
 
-
-
-
    window.fill((255, 255, 255))
    pygame.display.flip()
 
 
-
-
    block_size = 96
-
-
    player = Player(100, 100, 50, 50)
+
 
 
    fires = [
@@ -51,13 +46,25 @@ def main(window):
    for fire in fires:
        fire.on()
 
-
    floor = [Block(i * block_size, HEIGHT - block_size, block_size)
             for i in range(-WIDTH // block_size, WIDTH * 10 // block_size)]
 
+   fan = Fan(block_size * 4, HEIGHT - block_size * 1.25, 24, 8)
+   saw = Saw(block_size * 6, HEIGHT - block_size * 7, 38, 38)
+   saw_Collums = Saw_Collum(block_size * 8, HEIGHT - block_size * 3, 38, 38 )
+   saw_Rows = Saw_Row(block_size * 6, HEIGHT - block_size * 4, 38, 38)
 
-   objects = [*floor, *fires]
 
+   objects = [*floor, *fires, fan, saw, saw_Collums, saw_Rows ]
+
+   objects.append(fan)
+   fan.on()
+   objects.append(saw)
+   saw.on()
+   objects.append(saw_Collums)
+   saw_Collums.on()
+   objects.append(saw_Rows)
+   saw_Rows.on()
 
    pole_start = 2
    pole_end = 7
@@ -66,16 +73,13 @@ def main(window):
        block_y = HEIGHT - block_size * i
        objects.append(Block(block_x, block_y, block_size))
 
-
    horizontal1_start = 7
    horizontail1_end = 13
-
 
    for i in range(horizontal1_start, horizontail1_end + 2, 2):
        block_x = block_size * i
        block_y = HEIGHT - block_size * 2.5
        objects.append(Block(block_x, block_y, block_size))
-
 
    horizontal2_1_start = 16
    horizontail2_1_end = 27
@@ -154,19 +158,23 @@ def main(window):
        for fire in fires:
            fire.loop()
 
+       fan.loop()
+       saw.loop()
+       saw_Collums.loop()
+       saw_Rows.loop()
 
        draw(window, background, bg_image, player, objects, offset_x)
+       if player.is_dead:
+           pygame.display.update()
+           pygame.time.delay(2000)
 
+           run = False
 
        if (player.rect.right - offset_x >= WIDTH - scroll_area_width and player.x_vel > 0) or (
                (player.rect.left - offset_x <= scroll_area_width) and player.x_vel < 0):
            offset_x += player.x_vel
 
-
    pygame.quit()
-
-
-
 
 if __name__ == "__main__":
    main(window)

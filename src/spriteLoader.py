@@ -9,13 +9,12 @@ def flip(sprites):
    return [pygame.transform.flip(sprite, True, False) for sprite in sprites]
 
 
+
 def load_sprite_sheets(dir1, dir2, width, height, directon = False):
    path = join("assets", dir1, dir2)
    images = [f for f in listdir(path) if isfile(join(path,f))]
 
-
    all_sprites = {}
-
 
    for image in images:
        sprite_sheet = pygame.image.load(os.path.join(path, image))
@@ -40,9 +39,6 @@ def load_sprite_sheets(dir1, dir2, width, height, directon = False):
 
 
    return all_sprites
-
-
-
 
 def load_block(size):
    path = join("assets","Terrain", "Terrain.png")
