@@ -35,7 +35,7 @@ def load_sprite_sheets(dir1, dir2, width, height, directon=False):
            all_sprites[image.replace(".png","")] = sprites
 
 
-   print("All Sprites Loaded:", all_sprites)
+   # print("All Sprites Loaded:", all_sprites)
 
 
    return all_sprites
@@ -65,13 +65,12 @@ def get_background(name) :
    return tiles, image
 
 
-def draw(window, background, bg_image, player, objects, offset_x, food, score_board):
+def draw(window, background, bg_image, player, objects, offset_x, score_board):
    for tile in background:
        window.blit(bg_image, tile)
    for obj in objects:
       obj.draw(window, offset_x)
 
-   food.draw(window, offset_x)
    score_board.draw_score(window)
 
    player.draw(window, offset_x)

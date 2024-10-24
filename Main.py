@@ -22,6 +22,8 @@ def main_loop():
         clock.tick(FPS)
 
         if in_menu:
+            result = draw_intro_screen(window)
+            print(result)
             start_button_rect, exit_button_rect, leaderboard_button = draw_intro_screen(window)
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -31,7 +33,7 @@ def main_loop():
                     if start_button_rect.collidepoint(mouse_pos):
                         print("Start button clicked!")
                         in_menu = False
-                        main()
+                        main(window)
                     elif exit_button_rect.collidepoint(mouse_pos):
                         running = False
                     elif leaderboard_button.collidepoint(mouse_pos):
@@ -51,8 +53,6 @@ def main_loop():
                         if return_button.collidepoint(mouse_pos):
                             in_leaderboard = False
                             in_menu = True
-
-
         else:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:

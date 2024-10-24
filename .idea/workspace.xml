@@ -5,27 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="013c4596-3b70-4637-89cb-dff39b41b041" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/Demo.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/git_toolbox_blame.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/background_music.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/food.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/map.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/music.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/leaderboard.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/leaderboard.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Collide.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/collide.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Object.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/object.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/block.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/block.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/collide.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/collide.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/confige.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/confige.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fan.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/fan.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fire.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/fire.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/food.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/food.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/game.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/game.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/launchpad.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/launchpad.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scoreboard.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/scoreboard.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/player.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/player.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/spriteLoader.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/spriteLoader.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -35,6 +25,31 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitToolBoxStore">
+    <option name="recentBranches">
+      <RecentBranches>
+        <option name="branchesForRepo">
+          <list>
+            <RecentBranchesForRepo>
+              <option name="branches">
+                <list>
+                  <RecentBranch>
+                    <option name="branchName" value="democode" />
+                    <option name="lastUsedInstant" value="1729744806" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="main" />
+                    <option name="lastUsedInstant" value="1729744805" />
+                  </RecentBranch>
+                </list>
+              </option>
+              <option name="repositoryRootUrl" value="file://$PROJECT_DIR$" />
+            </RecentBranchesForRepo>
+          </list>
+        </option>
+      </RecentBranches>
+    </option>
   </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
@@ -56,9 +71,11 @@
     "ASKED_ADD_EXTERNAL_FILES": "true",
     "Python.Main.executor": "Run",
     "Python.block.executor": "Run",
+    "Python.collide.executor": "Run",
     "Python.food.executor": "Run",
     "Python.game.executor": "Run",
     "Python.gui.executor": "Run",
+    "Python.player.executor": "Run",
     "Python.scoreboard.executor": "Run",
     "Python.spriteLoader.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
