@@ -6,11 +6,11 @@ from src.confige import WIDTH, HEIGHT
 class Player(pygame.sprite.Sprite):
    COLOR = ( 250, 0, 0)
    GRAVITY = 1
-   SPRITES = load_sprite_sheets("MainCharacters","VirtualGuy", 32, 32, True)
+   name = None
    ANIMATION_DELAY = 3
 
 
-   def __init__(self, x , y , width, height):
+   def __init__(self, x , y , width, height, character_name):
        super().__init__()
 
 
@@ -26,8 +26,7 @@ class Player(pygame.sprite.Sprite):
        self.hit_count = 0
        self.is_dead = False
 
-
-       self.SPRITES = load_sprite_sheets("MainCharacters", "VirtualGuy", 32, 32, True)
+       self.SPRITES = load_sprite_sheets("MainCharacters", character_name, 32, 32, True)
        self.sprite = self.SPRITES["idle_" + self.direction][0]
 
 

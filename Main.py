@@ -10,7 +10,7 @@ def main_loop():
     window = pygame.display.set_mode((WIDTH, HEIGHT))
     clock = pygame.time.Clock()
 
-    running = True
+    running = True 
     in_menu = True
 
     while running:

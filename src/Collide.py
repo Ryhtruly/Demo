@@ -1,61 +1,55 @@
 import pygame
 from src.confige import PLAYER_VEL
+from src.fire import Fire
+from src.saw import Saw, Saw_Row, Saw_Collum
 
 
 def handle_vertical_collision(player, objects, dy):
-   collided_objects = []
-   for obj in objects:
-       if pygame.sprite.collide_mask(player, obj):
-           if dy > 0:
-               player.rect.bottom = obj.rect.top
-               player.landed()
-               player.y_vel = 0
-           elif dy < 0:
-               player.rect.top = obj.rect.bottom
-               player.hit_head()
-               player.y_vel = 0
-
-
-           collided_objects.append(obj)
-
-
-   return collided_objects
+    collided_objects = []
+    for obj in objects:
+        if pygame.sprite.collide_mask(player, obj):
+            if dy > 0:
+                player.rect.bottom = obj.rect.top
+                player.landed()
+            elif dy < 0:
+                player.rect.top = obj.rect.bottom
+                player.hit_head()
+            player.y_vel = 0
+            collided_objects.append(obj)
+    return collided_objects
 
 
 def collide(player, objects, dx):
-   player.move(dx, 0)
-   player.update()
-   collided_object = None
-   for obj in objects:
-       if pygame.sprite.collide_mask(player, obj):
-           collided_object = obj
-           break
-
-
-   player.move(-dx, 0)
-   player.update()
-   return collided_object
+    player.move(dx, 0)
+    player.update()
+    collided_object = None
+    for obj in objects:
+        if pygame.sprite.collide_mask(player, obj):
+            collided_object = obj
+            break
+    player.move(-dx, 0)
+    player.update()
+    return collided_object
 
 
 def handle_move(player, objects):
-   keys = pygame.key.get_pressed()
+    keys = pygame.key.get_pressed()
+    player.x_vel = 0
 
+    if player.is_dead:
+        return
 
-   player.x_vel = 0
-   collide_left = collide(player, objects, -PLAYER_VEL )
-   collide_right = collide(player, objects, PLAYER_VEL )
+    collide_left = collide(player, objects, -PLAYER_VEL)
+    collide_right = collide(player, objects, PLAYER_VEL)
 
+    if keys[pygame.K_LEFT] and not collide_left:
+        player.move_left(PLAYER_VEL)
+    if keys[pygame.K_RIGHT] and not collide_right:
+        player.move_right(PLAYER_VEL)
 
-   if keys[pygame.K_LEFT] and not collide_left:
-       player.move_left(PLAYER_VEL)
-   if keys[pygame.K_RIGHT] and not collide_right:
-       player.move_right(PLAYER_VEL)
-
-
-   vertical_collide = handle_vertical_collision(player, objects, player.y_vel)
-   to_check = [collide_left, collide_right, *vertical_collide]
-
-
-   for obj in to_check:
-       if obj and obj.name == "fire":
-           player.make_hit()
+    vertical_collide = handle_vertical_collision(player, objects, player.y_vel)
+    to_check = [collide_left, collide_right, *vertical_collide]
+    for obj in to_check:
+        if obj:
+            if isinstance(obj, Fire) or isinstance(obj, (Saw, Saw_Row, Saw_Collum)):
+                player.make_hit()

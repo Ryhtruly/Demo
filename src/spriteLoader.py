@@ -5,10 +5,9 @@ from src.confige import WIDTH, HEIGHT, DATA_FILE
 import os
 import pandas as pd
 
+
 def flip(sprites):
    return [pygame.transform.flip(sprite, True, False) for sprite in sprites]
-
-
 
 def load_sprite_sheets(dir1, dir2, width, height, directon = False):
    path = join("assets", dir1, dir2)
@@ -75,8 +74,8 @@ def draw(window , background, bg_image, player, object , offset_x, score_board):
    score_board.draw_score(window)
 
    player.draw(window, offset_x)
+   score_board.draw_score(window)
    pygame.display.update()
-
 
 def get_highest_score():
     try:
@@ -86,3 +85,4 @@ def get_highest_score():
         return leaderboard['score'].iloc[0]
     except (FileNotFoundError, pd.errors.EmptyDataError):
         return 0
+

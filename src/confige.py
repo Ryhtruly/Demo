@@ -1,4 +1,4 @@
-WIDTH = 1000
+WIDTH = 1400
 HEIGHT = 800
 PLAYER_VEL = 5
 BLACK = (0, 0, 0)
@@ -13,3 +13,7 @@ FPS = 60
 FONT_SCORE = ("Press Start 2P", 28, True, False)
 SCORE_POS = (10, 10)
 DATA_FILE = "data/leaderboard.csv"
+FONT_SCORE = ("Arial", 24)
+WHITE = (255, 255, 255)
+SCORE_POS = (10, 10)  # Vị trí hiển thị điểm số
+DATA_FILE = "leaderboard.csv"  # Tên file để lưu điểm số
