@@ -161,7 +161,6 @@ def main(window):
    objects.append(saw)
    objects.append(banana)
    objects.append(apple)
-   objects.append(saw_row)
    objects.append(fan_row)
    fan.on()
    saw.on()
@@ -269,9 +268,7 @@ def main(window):
        apple.loop()
        fan_row.loop()
 
-
        draw(window, background, bg_image, player, objects, offset_x, score_board)
-
 
        if (player.rect.right - offset_x >= WIDTH - scroll_area_width and player.x_vel > 0) or (
                (player.rect.left - offset_x <= scroll_area_width) and player.x_vel < 0):
