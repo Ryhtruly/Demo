@@ -6,17 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="013c4596-3b70-4637-89cb-dff39b41b041" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/leaderboard.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/leaderboard.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/collide.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/collide.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/confige.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/confige.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/fan.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/fan.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/fire.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/fire.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/food.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/food.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/game.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/game.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/launchpad.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/launchpad.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/player.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/player.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/spriteLoader.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/spriteLoader.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,26 +58,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Python.Main.executor": "Run",
-    "Python.block.executor": "Run",
-    "Python.collide.executor": "Run",
-    "Python.food.executor": "Run",
-    "Python.game.executor": "Run",
-    "Python.gui.executor": "Run",
-    "Python.player.executor": "Run",
-    "Python.scoreboard.executor": "Run",
-    "Python.spriteLoader.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/Admin/PycharmProjects/py_jump",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Python.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.block.executor&quot;: &quot;Run&quot;,
+    &quot;Python.collide.executor&quot;: &quot;Run&quot;,
+    &quot;Python.food.executor&quot;: &quot;Run&quot;,
+    &quot;Python.game.executor&quot;: &quot;Run&quot;,
+    &quot;Python.gui.executor&quot;: &quot;Run&quot;,
+    &quot;Python.player.executor&quot;: &quot;Run&quot;,
+    &quot;Python.scoreboard.executor&quot;: &quot;Run&quot;,
+    &quot;Python.spriteLoader.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Admin/PycharmProjects/py_jump&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>

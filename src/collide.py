@@ -63,9 +63,10 @@ def handle_move(player, objects, scoreboard):
            player.make_hit()
 
        if isinstance(obj, Food):
-           if obj.check_collision(player):
-               print("Food collision detected!")
-               scoreboard.increase_score()
-               to_check.remove(obj)
-           else:
-               print("Food collision not detected!")
+       # if obj.check_collision(player):
+           print("Food collision detected!")
+           scoreboard.increase_score()
+           to_check.remove(obj)
+           objects.remove(obj)
+       else:
+           print("Food collision not detected!")

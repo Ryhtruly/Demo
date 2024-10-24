@@ -11,7 +11,7 @@ from src.spriteLoader import get_background, draw
 from src.scoreboard import ScoreBoard, get_player_name
 from src.fan import Fan, FanRow
 from src.saw import Saw_Row, Saw_Collum, Saw
-from os.path import  join
+from os.path import join
 from src.spriteLoader import get_background
 from src.food import Banana, Apple
 
@@ -160,8 +160,8 @@ def main(window):
    saw = Saw(block_size * 6, HEIGHT - block_size * 4, 38, 38)
    saw_row = Saw_Row(block_size * 4, HEIGHT - block_size * 2.5, 38, 38)
    saw_collum = Saw_Collum(block_size * 8, HEIGHT - block_size * 2.5, 38, 38)
-   banana = Banana(block_size * 2, HEIGHT - block_size - 64)
-   apple = Apple(block_size * 3, HEIGHT - block_size - 64)
+   banana = [Banana(block_size * 2, HEIGHT - block_size - 64), Banana(block_size * 50, HEIGHT - block_size - 64)]
+   apple = [Apple(block_size * 3, HEIGHT - block_size - 64), Apple(block_size * 55, HEIGHT - block_size - 64)]
    fan_row = FanRow(block_size * 2, HEIGHT  - block_size * 3, 24 , 8)
 
 
@@ -173,7 +173,7 @@ def main(window):
             for i in range(-WIDTH // block_size, WIDTH * 10 // block_size)]
 
 
-   objects = [*floor, *fires, fan, saw, saw_row, saw_collum, banana, apple, fan_row]
+   objects = [*floor, *fires, fan, saw, saw_row, saw_collum, *banana, *apple, fan_row]
    fan.on()
    saw.on()
    saw_row.on()
@@ -276,8 +276,10 @@ def main(window):
        for fire in fires:
            fire.loop()
        fan.loop()
-       banana.loop()
-       apple.loop()
+       for bnn in banana:
+          bnn.loop()
+       for ap in apple:
+          ap.loop()
        fan_row.loop()
 
 
