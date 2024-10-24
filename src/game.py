@@ -1,41 +1,43 @@
 import pygame
+
 from src.player import Player
-from src.block import Block
-from src.fire import Fire
 from src.gui import draw_intro_screen, check_button_event
-from src.Collide import handle_move
+from src.collide import handle_move
 from src.confige import WIDTH, HEIGHT, FPS
 from src.spriteLoader import get_background, draw
-
-
+from src.fire import Fire
+from src.block import Block
+from src.scoreboard import ScoreBoard, get_player_name
+from src.food import Food
 window = pygame.display.set_mode((WIDTH, HEIGHT))
 
+# from src.map import map_level_1
 
-def main(window):
+def main():
    clock = pygame.time.Clock()
    background, bg_image = get_background("rsz_1new2.png")
-   start_button_rect, exit_button_rect = draw_intro_screen(window)
-
+   start_button_rect, exit_button_rect, leaderboard_button = draw_intro_screen(window)
 
    while True:
        action = check_button_event(start_button_rect, exit_button_rect)
        if action == "start":
            break
 
-
-
-
    window.fill((255, 255, 255))
    pygame.display.flip()
 
-
-
+   player_name = get_player_name(window, WIDTH, HEIGHT)
+   if player_name is None:
+       return
 
    block_size = 96
 
-
    player = Player(100, 100, 50, 50)
 
+   food = Food(300, 400)
+
+   map_level = 1
+   score_board = ScoreBoard(player_name, map_level)
 
    fires = [
        Fire(block_size * 6.35, HEIGHT - block_size - 64, 16, 32),
@@ -47,17 +49,13 @@ def main(window):
        Fire(block_size * 31.35, HEIGHT - block_size - 64, 16, 32),
    ]
 
-
    for fire in fires:
        fire.on()
-
 
    floor = [Block(i * block_size, HEIGHT - block_size, block_size)
             for i in range(-WIDTH // block_size, WIDTH * 10 // block_size)]
 
-
    objects = [*floor, *fires]
-
 
    pole_start = 2
    pole_end = 7
@@ -66,16 +64,13 @@ def main(window):
        block_y = HEIGHT - block_size * i
        objects.append(Block(block_x, block_y, block_size))
 
-
    horizontal1_start = 7
    horizontail1_end = 13
-
 
    for i in range(horizontal1_start, horizontail1_end + 2, 2):
        block_x = block_size * i
        block_y = HEIGHT - block_size * 2.5
        objects.append(Block(block_x, block_y, block_size))
-
 
    horizontal2_1_start = 16
    horizontail2_1_end = 27
@@ -85,9 +80,7 @@ def main(window):
            block_y = HEIGHT - block_size * i
            objects.append(Block(block_x, block_y, block_size))
 
-
    objects.append(Block(block_size * 28, HEIGHT - block_size * 3, block_size))
-
 
    pole2_start = 2
    pole2_end = 8
@@ -96,11 +89,9 @@ def main(window):
        block_y = HEIGHT - block_size * i
        objects.append(Block(block_x, block_y, block_size))
 
-
    objects.append(Block(block_size * 29, HEIGHT - block_size * 4.8, block_size))
    objects.append(Block(block_size * 28, HEIGHT - block_size * 7, block_size))
    objects.append(Block(block_size * 5, HEIGHT - block_size * 2, block_size))
-
 
    collums = [7, 6, 5, 4, 3, 2]
    for i in range(32, 37 + 1):
@@ -109,7 +100,6 @@ def main(window):
            block_x = block_size * i
            block_y = HEIGHT - block_size * j
            objects.append(Block(block_x, block_y, block_size))
-
 
    horizontal3_1_start = 39
    horizontal3_1_end = 46
@@ -120,7 +110,6 @@ def main(window):
        block_y2 = HEIGHT - block_size * 5
        objects.append(Block(block_x, block_y2, block_size))
 
-
    horizontal3_2_start = 49
    horizontal3_2_end = 56
    for i in range(horizontal3_2_start, horizontal3_2_end + 1):
@@ -130,7 +119,7 @@ def main(window):
        block_y2 = HEIGHT - block_size * 6.5
        objects.append(Block(block_x, block_y2, block_size))
 
-
+   objects.append(food)
    offset_x = 0
    scroll_area_width = 200
 
@@ -148,25 +137,25 @@ def main(window):
 
 
        player.loop(FPS)
-       handle_move(player, objects)
+       handle_move(player, objects, score_board)
 
 
        for fire in fires:
            fire.loop()
 
+       food.loop()
 
-       draw(window, background, bg_image, player, objects, offset_x)
+       draw(window, background, bg_image, player, objects, offset_x, food, score_board)
+
 
 
        if (player.rect.right - offset_x >= WIDTH - scroll_area_width and player.x_vel > 0) or (
                (player.rect.left - offset_x <= scroll_area_width) and player.x_vel < 0):
            offset_x += player.x_vel
 
-
+   score_board.update_data()
    pygame.quit()
 
 
-
-
 if __name__ == "__main__":
-   main(window)
+   main()

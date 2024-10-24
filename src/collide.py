@@ -1,7 +1,6 @@
 import pygame
 from src.confige import PLAYER_VEL
 
-
 def handle_vertical_collision(player, objects, dy):
    collided_objects = []
    for obj in objects:
@@ -37,7 +36,7 @@ def collide(player, objects, dx):
    return collided_object
 
 
-def handle_move(player, objects):
+def handle_move(player, objects, scoreboard):
    keys = pygame.key.get_pressed()
 
 
@@ -59,3 +58,11 @@ def handle_move(player, objects):
    for obj in to_check:
        if obj and obj.name == "fire":
            player.make_hit()
+
+       if obj and obj.name == "food":
+           if obj.check_collision(player):
+               print("Food collision detected!")
+               scoreboard.increase_score()
+               to_check.remove(obj)
+           else:
+               print("Food collision not detected!")
