@@ -1,19 +1,11 @@
-import pygame
-import sys
-import os
 from src.player import Player
 from src.block import Block, Block2
 from src.fire import Fire
-from src.gui import draw_intro_screen, check_button_event
-from src.collide import handle_move
-from src.confige import WIDTH, HEIGHT, FPS
-from src.spriteLoader import get_background, draw
-from src.scoreboard import ScoreBoard, get_player_name
-from src.fan import Fan, FanRow, Fan_N, Fan_M
-from src.saw import Saw_Row, Saw_Collum, Saw, Saw_Collum2, Saw_Row_N2, Saw_Row_N, Saw_Collum_N, Saw_Collum3
-from os.path import join
-from src.spriteLoader import get_background
-from src.food import Banana, Apple
+from src.confige import HEIGHT
+from src.fan import Fan, Fan_N, Fan_M
+from src.saw import Saw_Row, Saw_Collum, Saw, Saw_Collum2, Saw_Row_N2, Saw_Row_N, Saw_Collum3
+
+from src.food import Banana, Apple, Strawberry, Melon
 
 
 def reset_game(selected_character):
@@ -31,6 +23,7 @@ def reset_game(selected_character):
     foods = []
     ciels = []
     arrows = []
+    foods = []
 
     for i in range(100):
         x = i * block_size
@@ -147,7 +140,7 @@ def reset_game(selected_character):
     fans.append(Fan_N(18 * block_size, HEIGHT - block_size * 2.5, 24, 8, 200))
     fans.append(Fan_N(18.5 * block_size, HEIGHT - block_size * 2.5, 24, 8, 200))
     fans.append(Fan_N(18.75 * block_size, HEIGHT - block_size * 2.5, 24, 8, 200))
-    fans.append(Fan(44.3 * block_size, HEIGHT - block_size * 2, 24, 8))
+    fans.append(Fan_M(44.3 * block_size, HEIGHT - block_size * 1.8, 24, 8, 330))
     fans.append(Fan_M(block_size * 56.3, HEIGHT - block_size * 2.5, 24, 8, 180))
     fans.append(Fan_M(block_size * 58.3, HEIGHT - block_size * 4.5, 24, 8, 180))
     fans.append(Fan_M(block_size * 24.7, HEIGHT - block_size * 4, 24, 8, 180))
@@ -159,8 +152,26 @@ def reset_game(selected_character):
 
     for i in range(75, 78, 2):
         x = block_size * (i + 0.2)
-        y = HEIGHT - block_size * 2
-        saws.append(Saw_Collum3(x, y, 38, 38, 580))
+        y = HEIGHT - block_size * 4
+        saws.append(Saw_Collum3(x, y, 38, 38, 380))
+
+    import random
+
+    food_types = [Banana, Apple, Strawberry, Melon]
+
+    food_positions = [
+        (4.2, 3.7), (6.2, 3.7), (9.2, 1.7), (11.2, 1.7), (14.2, 1.7),
+        (12.2, 3.7), (13.2, 3.7), (4.2, 6.7), (6.2, 6.7), (10.2, 6.7),
+        (15.2, 6.7), (17.2, 5.7), (21.2, 7.7), (21.7, 3.2), (27.7, 5.3),
+        (24.7, 6.3), (30.7, 6.3), (28.2, 2.7), (37.2, 5.7), (38.2, 6.7), (40.2, 3.3), (44.2, 6.7), (39.2, 4.7),
+        (56.2, 6.7), (59.2, 6.7), (62.3, 4.7), (66.2, 4.7),
+        (70.2, 4.7), (64.2, 6.7), (68.2, 6.7), (75.2, 2.7), (77.2, 2.7)
+    ]
+
+    foods = [
+        random.choice(food_types)(block_size * x, HEIGHT - block_size * y)
+        for x, y in food_positions
+    ]
 
     for saw_row in saw_rows:
         saw_row.on()
@@ -180,15 +191,37 @@ def reset_game(selected_character):
     for arrow in arrows:
         arrow.on()
 
-    objects = [*floor, *ciels, *saws, *saw_collums, *saw_rows, *fans, *fan_rows, *fires, *foods, *arrows]
+    objects = [*floor, *ciels, *saws, *saw_collums, *saw_rows, *fans, *fan_rows, *fires, *foods, *arrows, *foods]
 
     for i in range(1, 9):
         x = 0
         y = HEIGHT - i * block_size
         objects.append(Block(x, y, block_size))
-    objects.append(Block(block_size * 33, HEIGHT - block_size, block_size))
-    objects.append(Block2(block_size * 55, HEIGHT - block_size * 2, block_size))
-    objects.append(Block2(block_size * 59, HEIGHT - block_size * 6, block_size))
+
+    # Giả sử block_size và HEIGHT đã được định nghĩa ở phần đầu của chương trình
+    def create_block(x, y, block_type, block_size, HEIGHT):
+        return eval(f"{block_type}(block_size * {x}, HEIGHT - block_size * {y}, block_size)")
+
+    # Định nghĩa thông tin blocks
+    block_data = [
+        # Format: (x, y, type)
+        (33, 1, "Block"),
+        (55, 2, "Block2"),
+        (59, 6, "Block2"),
+        (28, 2, "Block2"),
+        (38, 6, "Block2"),
+        (56, 8, "Block2"),
+        (64, 8, "Block2"),
+        (68, 8, "Block2"),
+        (75, 2, "Block2"),
+        (77, 2, "Block2")
+    ]
+
+    # Tạo blocks và thêm vào objects
+    blocks = [create_block(x, y, block_type, block_size, HEIGHT) for x, y, block_type in block_data]
+    objects.extend(blocks)
+
+    objects.extend(blocks)
 
     for i in range(2, 5):
         x = block_size
@@ -311,8 +344,6 @@ def reset_game(selected_character):
             x = block_size * j
             y = HEIGHT - block_size * i
             objects.append(Block(x, y, block_size))
-
-
 
     for obj in objects:
         if isinstance(obj, (Saw, Saw_Collum, Saw_Row, Fire, Fan_N, Fan_M, Fan, Saw_Collum2, Saw_Row_N2, Saw_Row_N, Saw_Collum3)):

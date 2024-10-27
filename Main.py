@@ -1,5 +1,5 @@
 import pygame
-from src.gui import draw_intro_screen, check_button_event, draw_leaderboard_screen
+from src.gui import draw_intro_screen,  draw_leaderboard_screen
 from src.game import main
 from src.confige import WIDTH, HEIGHT, FPS
 from src.music import play_background_music

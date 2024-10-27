@@ -60,7 +60,8 @@ def handle_move(player, objects, scoreboard):
    to_check = [collide_left, collide_right, *vertical_collide]
 
    for obj in to_check:
-       if isinstance(obj, (Fire, Saw, Saw_Collum, Saw_Row, Saw_Collum2, Saw_Row2, Saw_Row_N)): pass
+       if isinstance(obj, (Fire, Saw, Saw_Collum, Saw_Row, Saw_Collum2, Saw_Row2, Saw_Row_N)):
+           player.make_hit()
 
        if isinstance(obj, Food):
            print("Food collision detected!")

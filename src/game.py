@@ -7,16 +7,16 @@ from src.fire import Fire
 from src.gui import draw_intro_screen, check_button_event
 from src.collide import handle_move
 from src.confige import WIDTH, HEIGHT, FPS
-from src.spriteLoader import get_background, draw
+from src.spriteLoader import draw
 from src.scoreboard import ScoreBoard, get_player_name
-from src.fan import Fan, FanRow, Fan_N, Fan_M
+from src.fan import Fan, Fan_N, Fan_M
 from src.saw import Saw_Row, Saw_Collum, Saw, Saw_Collum2, Saw_Row_N2, Saw_Row_N, Saw_Collum_N, Saw_Collum3
 from os.path import join
 from src.spriteLoader import get_background
 from src.food import Banana, Apple, Strawberry, Melon
-from src.restart import reset_game, reset_objects
+from src.restart import reset_game
 window = pygame.display.set_mode((WIDTH, HEIGHT))
-import random
+
 
 pygame.init()
 window = pygame.display.set_mode((WIDTH, HEIGHT))
