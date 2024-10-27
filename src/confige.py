@@ -11,9 +11,9 @@ GRAVITY = 1
 JUMP_VELOCITY = 15
 FPS = 60
 FONT_SCORE = ("Press Start 2P", 28, True, False)
+FONT_LEADERBOARD = ("ArcadeClassic", 50, True, False)
 SCORE_POS = (10, 10)
+LEADERBOARD_POS = (350, 100)
 DATA_FILE = "data/leaderboard.csv"
-FONT_SCORE = ("Arial", 24)
-WHITE = (255, 255, 255)
-SCORE_POS = (10, 10)  # Vị trí hiển thị điểm số
-DATA_FILE = "leaderboard.csv"  # Tên file để lưu điểm số
+
+MUSIC_BACKGROUND_FILE = "data/background_music.mp3"

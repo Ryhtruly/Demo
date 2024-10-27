@@ -1,7 +1,8 @@
 
 import pygame
-from src.Object import Object
+from src.object import Object
 from src.spriteLoader import load_sprite_sheets
+
 
 class LaunchPad(Object):
     ANIMATION_DELAY = 3

@@ -14,6 +14,9 @@ class Fire(Block):
         self.animation_count = 0
         self.animation_name = "on"
 
+    def reset(self):
+        self.animation_count = 0
+
     def on(self):
         self.animation_name = "on"
 
@@ -33,11 +36,11 @@ class Fire(Block):
             self.animation_count = 0
 
 
-def draw(window, background, bg_image, player, object, offset_x):
+def draw(window, background, bg_image, player, objects, offset_x):
     for tile in background:
         window.blit(bg_image, tile)
 
-    for obj in object:
+    for obj in objects:
         obj.draw(window, offset_x)
 
     player.draw(window, offset_x)
