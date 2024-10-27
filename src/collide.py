@@ -1,42 +1,45 @@
 import pygame
 from src.confige import PLAYER_VEL
 from src.fire import Fire
-from src.saw import Saw, Saw_Row, Saw_Collum
+from src.saw import Saw, Saw_Collum, Saw_Row, Saw_Collum2, Saw_Row2, Saw_Row_N
+from src.fan import FanRow
 from src.food import Food
 
 
 def handle_vertical_collision(player, objects, dy):
-   collided_objects = []
-   for obj in objects:
-       if pygame.sprite.collide_mask(player, obj):
-           if dy > 0:
-               player.rect.bottom = obj.rect.top
-               player.landed()
-               player.y_vel = 0
-           elif dy < 0:
-               player.rect.top = obj.rect.bottom
-               player.hit_head()
-               player.y_vel = 0
-
-
-           collided_objects.append(obj)
-   return collided_objects
+    collided_objects = []
+    for obj in objects:
+        if pygame.sprite.collide_mask(player, obj):
+            if dy > 0:
+                player.rect.bottom = obj.rect.top
+                player.landed()
+                player.y_vel = 0
+                if isinstance(obj, FanRow):
+                    if obj.moving_right:
+                        player.rect.x += obj.MOVE_SPEED
+                    else:
+                        player.rect.x -= obj.MOVE_SPEED
+            elif dy < 0:
+                player.rect.top = obj.rect.bottom
+                player.hit_head()
+                player.y_vel = 0
+            collided_objects.append(obj)
+    return collided_objects
 
 
 def collide(player, objects, dx):
-   player.move(dx, 0)
-   player.update()
-   collided_object = None
+    player.move(dx, 0)
+    player.update()
+    collided_object = None
 
-   for obj in objects:
-       if pygame.sprite.collide_mask(player, obj):
-           collided_object = obj
-           break
+    for obj in objects:
+        if pygame.sprite.collide_mask(player, obj):
+            collided_object = obj
+            break
 
-
-   player.move(-dx, 0)
-   player.update()
-   return collided_object
+    player.move(-dx, 0)
+    player.update()
+    return collided_object
 
 
 def handle_move(player, objects, scoreboard):
@@ -57,16 +60,14 @@ def handle_move(player, objects, scoreboard):
    vertical_collide = handle_vertical_collision(player, objects, player.y_vel)
    to_check = [collide_left, collide_right, *vertical_collide]
 
-
    for obj in to_check:
-       if isinstance(obj, Fire) or isinstance(obj, (Saw, Saw_Row, Saw_Collum)):
+       if isinstance(obj, (Fire, Saw, Saw_Collum, Saw_Row, Saw_Collum2, Saw_Row2, Saw_Row_N)):
            player.make_hit()
 
        if isinstance(obj, Food):
-       # if obj.check_collision(player):
            print("Food collision detected!")
            scoreboard.increase_score()
            to_check.remove(obj)
-           objects.remove(obj)
-       else:
-           print("Food collision not detected!")
+           if obj in objects:
+               print(f"Removing {obj} from objects")
+               objects.remove(obj)

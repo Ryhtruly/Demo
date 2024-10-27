@@ -65,13 +65,14 @@ def get_background(name) :
    return tiles, image
 
 
-def draw(window, background, bg_image, player, objects, offset_x, score_board):
+def draw(window, background, bg_image, player, objects, offset_x, score_board, last_point):
    for tile in background:
        window.blit(bg_image, tile)
    for obj in objects:
       obj.draw(window, offset_x)
 
    score_board.draw_score(window)
+   last_point.draw(window, offset_x)
 
    player.draw(window, offset_x)
    pygame.display.update()

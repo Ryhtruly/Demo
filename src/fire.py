@@ -14,6 +14,9 @@ class Fire(Block):
         self.animation_count = 0
         self.animation_name = "on"
 
+    def reset(self):
+        self.animation_count = 0
+
     def on(self):
         self.animation_name = "on"
 

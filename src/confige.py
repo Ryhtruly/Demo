@@ -1,4 +1,4 @@
-WIDTH = 1000
+WIDTH = 1400
 HEIGHT = 800
 PLAYER_VEL = 5
 BLACK = (0, 0, 0)
@@ -9,7 +9,7 @@ BLUE = (0, 0, 255)
 PLAYER_SPEED = 5
 GRAVITY = 1
 JUMP_VELOCITY = 15
-FPS = 80
+FPS = 60
 FONT_SCORE = ("Press Start 2P", 28, True, False)
 FONT_LEADERBOARD = ("ArcadeClassic", 50, True, False)
 SCORE_POS = (10, 10)

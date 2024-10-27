@@ -109,3 +109,7 @@ def draw_leaderboard_screen(window):
 
     return return_button
 
+
+def draw_introduction(window):
+    window.fill(BLACK)
+

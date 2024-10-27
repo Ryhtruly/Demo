@@ -1,5 +1,5 @@
 import pygame
-from src.gui import draw_intro_screen, check_button_event, draw_leaderboard_screen
+from src.gui import draw_intro_screen, draw_leaderboard_screen
 from src.game import main
 from src.confige import WIDTH, HEIGHT, FPS
 from src.music import play_background_music
@@ -16,6 +16,7 @@ def main_loop():
     running = True
     in_menu = True
     in_leaderboard = False
+    in_introduction = False
 
     while running:
 
@@ -53,6 +54,10 @@ def main_loop():
                         if return_button.collidepoint(mouse_pos):
                             in_leaderboard = False
                             in_menu = True
+
+        # elif in_introduction:
+        #     return_button = draw
+
         else:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:

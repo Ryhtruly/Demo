@@ -29,6 +29,19 @@ class Player(pygame.sprite.Sprite):
        self.SPRITES = load_sprite_sheets("MainCharacters", character_name, 32, 32, True)
        self.sprite = self.SPRITES["idle_" + self.direction][0]
 
+   def reset(self):
+       self.rect.x = 100
+       self.rect.y = 100
+       self.x_vel = 0
+       self.y_vel = 0
+       self.mask = None
+       self.direction = "left"
+       self.animation_count = 0
+       self.fall_count = 0
+       self.jump_count = 0
+       self.hit = False
+       self.hit_count = 0
+       self.is_dead = False
 
    def jump(self):
        self.y_vel = -self.GRAVITY * 9
@@ -126,6 +139,15 @@ class Player(pygame.sprite.Sprite):
            win.blit(self.sprite, (self.rect.x - offset_x, self.rect.y))
        if self.is_dead:
            font = pygame.font.SysFont('Pixeled', 64)
-           text = font.render('DEFEAT', True, (255, 255, 255))
-           text_rect = text.get_rect(center=(WIDTH // 2, HEIGHT // 2))
-           win.blit(text, text_rect)
+           defeat_text = font.render('DEFEAT', True, (255, 255, 255))
+           defeat_text_rect = defeat_text.get_rect(center=(WIDTH // 2, HEIGHT // 2 - 50))
+           win.blit(defeat_text, defeat_text_rect)
+
+           restart_font = pygame.font.SysFont('Pixeled', 32)
+           restart_text = restart_font.render('RESTART', True, (255, 255, 255))
+           restart_button_rect = restart_text.get_rect(center=(WIDTH // 2, HEIGHT // 2 + 50))
+           pygame.draw.rect(win, (100, 100, 100), restart_button_rect)
+           win.blit(restart_text, restart_button_rect)
+
+           return restart_button_rect
+       return None

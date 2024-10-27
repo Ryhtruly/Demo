@@ -1,6 +1,6 @@
 
 import pygame.font
-from src.confige import FONT_SCORE, WHITE, SCORE_POS, DATA_FILE, FONT_LEADERBOARD, LEADERBOARD_POS
+from src.confige import FONT_SCORE, WHITE, SCORE_POS, DATA_FILE, FONT_LEADERBOARD
 from src.spriteLoader import get_highest_score
 import pandas as pd
 from src.spriteLoader import get_background

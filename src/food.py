@@ -14,16 +14,8 @@ class Food(Object):
         self.sprites = self.all_sprites[name_food]
         self.sprite = self.sprites[0]
         self.mask = pygame.mask.from_surface(self.sprite)
-        # self.collected = False
-
-    # def check_collision(self, player):
-    #     if not self.collected and pygame.sprite.collide_mask(player, self):
-    #         self.collected = True
-    #         return True
-    #     return False
 
     def loop(self):
-        # if not self.collected:
         if self.animation_count // self.ANIMATION_DELAY >= len(self.sprites):
             self.animation_count = 0
 
@@ -35,7 +27,6 @@ class Food(Object):
 
     # @override draw method
     def draw(self, win, offset_x):
-        # if not self.collected:
         win.blit(self.sprite,  (self.rect.x - offset_x, self.rect.y))
 
 
