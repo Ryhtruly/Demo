@@ -1,16 +1,17 @@
 import pygame
+import os
+import pandas as pd
 from os import listdir
 from os.path import isfile, join
 from src.confige import WIDTH, HEIGHT, DATA_FILE
-import os
-import pandas as pd
 
 
 def flip(sprites):
    return [pygame.transform.flip(sprite, True, False) for sprite in sprites]
 
 
-def load_sprite_sheets(dir1, dir2, width, height, directon=False):
+
+def load_sprite_sheets(dir1, dir2, width, height, directon = False):
    path = join("assets", dir1, dir2)
    images = [f for f in listdir(path) if isfile(join(path,f))]
 
@@ -40,7 +41,6 @@ def load_sprite_sheets(dir1, dir2, width, height, directon=False):
 
    return all_sprites
 
-
 def load_block(size):
    path = join("assets","Terrain", "Terrain.png")
    image = pygame.image.load(path).convert_alpha()
@@ -49,6 +49,13 @@ def load_block(size):
    surface.blit(image, (0,0), rect)
    return pygame.transform.scale2x(surface)
 
+def load_block2(size):
+   path = join("assets","Terrain", "Terrain.png")
+   image = pygame.image.load(path).convert_alpha()
+   surface = pygame.Surface((size,size), pygame.SRCALPHA, 32)
+   rect = pygame.Rect(0 ,64, size, size)
+   surface.blit(image, (0, 0), rect)
+   return pygame.transform.scale2x(surface)
 
 def get_background(name) :
    image = pygame.image.load(join("assets","Background", name))
@@ -56,7 +63,7 @@ def get_background(name) :
    tiles = []
 
 
-   for i in range(WIDTH // width +1):
+   for i in range(WIDTH // width +  1):
        for j in range(HEIGHT // height + 1):
            pos = [ i * width, j * height]
            tiles.append(pos)
@@ -65,14 +72,16 @@ def get_background(name) :
    return tiles, image
 
 
-def draw(window, background, bg_image, player, objects, offset_x, score_board, last_point):
+def draw(window , background, bg_image, player, objects , offset_x, score_board, start_point):
    for tile in background:
        window.blit(bg_image, tile)
+
+
    for obj in objects:
-      obj.draw(window, offset_x)
+       obj.draw(window, offset_x)
 
    score_board.draw_score(window)
-   last_point.draw(window, offset_x)
+   start_point.draw(window, offset_x)
 
    player.draw(window, offset_x)
    pygame.display.update()

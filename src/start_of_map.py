@@ -5,11 +5,11 @@ from src.spriteLoader import load_sprite_sheets
 image_path = "assets/Items/Checkpoint/Start"
 
 
-class LastPoint(Object):
-    ANIMATION_DELAY = 2
+class StartPoint(Object):
+    ANIMATION_DELAY = 5
 
     def __init__(self, x, y):
-        super().__init__(x, y, 64, 64, name="LastPoint")
+        super().__init__(x, y, 64, 64, name="StartPoint")
         self.all_sprites = load_sprite_sheets("Items", "Checkpoints\\Start", 64, 64, False)
 
         self.rect = self.image.get_rect(topleft=(x, y))

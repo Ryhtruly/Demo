@@ -5,24 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="013c4596-3b70-4637-89cb-dff39b41b041" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/end_of_map.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/restart.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/start_of_map.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/Menu/Buttons/introductionicon.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/leaderboard.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/leaderboard.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/block.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/block.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/collide.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/collide.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/confige.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/confige.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/fan.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/fan.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/fire.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/fire.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/food.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/food.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/game.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/game.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gui.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/player.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/player.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/saw.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/saw.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/scoreboard.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/scoreboard.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/spriteLoader.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/spriteLoader.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/start_of_map.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/start_of_map.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,7 +79,7 @@
     &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
     &quot;Python.Main.executor&quot;: &quot;Run&quot;,
     &quot;Python.block.executor&quot;: &quot;Run&quot;,
-    &quot;Python.collide.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.collide.executor&quot;: &quot;Run&quot;,
     &quot;Python.end_of_map.executor&quot;: &quot;Run&quot;,
     &quot;Python.food.executor&quot;: &quot;Run&quot;,
     &quot;Python.game.executor&quot;: &quot;Run&quot;,

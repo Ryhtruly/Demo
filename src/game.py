@@ -1,6 +1,8 @@
 import pygame
+import random
 import sys
 import os
+from os.path import join
 from src.player import Player
 from src.block import Block, Block2
 from src.fire import Fire
@@ -11,11 +13,11 @@ from src.spriteLoader import draw
 from src.scoreboard import ScoreBoard, get_player_name
 from src.fan import Fan, Fan_N, Fan_M
 from src.saw import Saw_Row, Saw_Collum, Saw, Saw_Collum2, Saw_Row_N2, Saw_Row_N, Saw_Collum_N, Saw_Collum3
-from os.path import join
 from src.spriteLoader import get_background
-from src.food import Banana, Apple, Strawberry, Melon
+from src.food import Banana, Apple, Strawberry, Melon, Food
 from src.restart import reset_game
-window = pygame.display.set_mode((WIDTH, HEIGHT))
+from src.start_of_map import StartPoint
+from src.end_of_map import LastPoint
 
 
 pygame.init()
@@ -104,11 +106,12 @@ def character_selection_screen(window, character_images):
 
         pygame.display.flip()
 
+
 def main(window):
 
    clock = pygame.time.Clock()
    background, bg_image = get_background("rsz_1new2.png")
-   start_button_rect, exit_button_rect, leaderboard_button = draw_intro_screen(window)
+   start_button_rect, exit_button_rect, leaderboard_button, intro_button = draw_intro_screen(window)
 
    while True:
        action = check_button_event(start_button_rect, exit_button_rect)
@@ -118,7 +121,7 @@ def main(window):
             pygame.quit()
             return
 
-   player_name = get_player_name(window, WIDTH, HEIGHT)
+   player_name = get_player_name(window)
    map_level = 1
 
    if player_name is None:
@@ -137,9 +140,9 @@ def main(window):
    window.blit(text, (WIDTH // 2 - text.get_width() // 2, HEIGHT // 2 - text.get_height() // 2))
    pygame.display.flip()
    pygame.time.wait(2000)
-
    block_size = 96
-
+   start_point = StartPoint(70, HEIGHT - 510)
+   end_point = LastPoint(8240, 105)
    player = Player(100, 100, 50, 50, selected_character)
 
    floor = []
@@ -149,10 +152,8 @@ def main(window):
    fans = []
    fan_rows = []
    fires = []
-   foods = []
    ciels = []
    arrows = []
-   foods = []
 
    for i in range(100):
        x = i * block_size
@@ -285,7 +286,6 @@ def main(window):
        y = HEIGHT - block_size * 4
        saws.append(Saw_Collum3(x , y , 38 , 38 , 380))
 
-   import random
 
    food_types = [Banana, Apple, Strawberry, Melon]
 
@@ -322,6 +322,7 @@ def main(window):
        arrow.on()
 
 
+
    objects = [*floor, *ciels,  *saws, *saw_collums, *saw_rows, *fans, *fan_rows, *fires, *foods , *arrows, *foods]
 
 
@@ -351,8 +352,6 @@ def main(window):
 
    # Tạo blocks và thêm vào objects
    blocks = [create_block(x, y, block_type, block_size, HEIGHT) for x, y, block_type in block_data]
-   objects.extend(blocks)
-
    objects.extend(blocks)
 
    for i in range(2, 5):
@@ -464,7 +463,7 @@ def main(window):
        for j in range(2, height + 1):
            block_x = block_size * (start + i )
            block_y = HEIGHT - block_size * (j)
-           objects.append(Block2(block_x, block_y, block_size))\
+           objects.append(Block2(block_x, block_y, block_size))
 
    for i in range(2, 7):
        for j in range(84, 87):
@@ -477,6 +476,7 @@ def main(window):
            x = block_size * j
            y = HEIGHT - block_size * i
            objects.append(Block(x, y, block_size))
+   objects.append(end_point)
 
    offset_x = 0
 
@@ -485,6 +485,11 @@ def main(window):
    run = True
    while run:
        clock.tick(FPS)
+       is_victory = handle_move(player, objects, score_board)
+
+       if is_victory:
+           return
+
        for event in pygame.event.get():
            if event.type == pygame.QUIT:
                run = False
@@ -503,11 +508,12 @@ def main(window):
        player.loop(FPS)
 
        for obj in objects:
-           if isinstance(obj, (Saw, Saw_Collum, Saw_Row, Fire, Fan_N, Fan_M, Fan, Saw_Collum2, Saw_Row_N2, Saw_Row_N, Saw_Collum3, Banana)):
+           if isinstance(obj, (Saw, Saw_Collum, Saw_Row, Fire, Fan_N, Fan_M, Fan, Saw_Collum2, Saw_Row_N2, Saw_Row_N, Saw_Collum3, Food, StartPoint, LastPoint)):
                obj.loop()
+       start_point.loop()
 
        handle_move(player, objects, score_board)
-       draw(window, background, bg_image, player, objects, offset_x, score_board)
+       draw(window, background, bg_image, player, objects, offset_x, score_board, start_point)
 
        if player.is_dead:
            restart_button_rect = player.draw(window, offset_x)

@@ -12,22 +12,22 @@ class Food(Object):
         self.rect = self.image.get_rect(topleft=(x, y))
         self.animation_count = 0
         self.sprites = self.all_sprites[name_food]
-        self.sprite = self.sprites[0]
-        self.mask = pygame.mask.from_surface(self.sprite)
+        self.image = self.sprites[0]
+        self.mask = pygame.mask.from_surface(self.image)
 
     def loop(self):
         if self.animation_count // self.ANIMATION_DELAY >= len(self.sprites):
             self.animation_count = 0
 
         idx_sprite = (self.animation_count // self.ANIMATION_DELAY) % len(self.sprites)
-        self.sprite = self.sprites[idx_sprite]
+        self.image = self.sprites[idx_sprite]
         self.animation_count += 1
 
-        self.mask = pygame.mask.from_surface(self.sprite)
+        self.mask = pygame.mask.from_surface(self.image)
 
-    # @override draw method
-    def draw(self, win, offset_x):
-        win.blit(self.sprite,  (self.rect.x - offset_x, self.rect.y))
+    # # @override draw method
+    # def draw(self, win, offset_x):
+    #     win.blit(self.sprite,  (self.rect.x - offset_x, self.rect.y))
 
 
 class Banana(Food):

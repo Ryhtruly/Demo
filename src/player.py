@@ -25,6 +25,7 @@ class Player(pygame.sprite.Sprite):
        self.hit = False
        self.hit_count = 0
        self.is_dead = False
+       # self.is_landed = False
 
        self.SPRITES = load_sprite_sheets("MainCharacters", character_name, 32, 32, True)
        self.sprite = self.SPRITES["idle_" + self.direction][0]
@@ -44,6 +45,7 @@ class Player(pygame.sprite.Sprite):
        self.is_dead = False
 
    def jump(self):
+       # self.is_landed = False
        self.y_vel = -self.GRAVITY * 9
        self.animation_count = 0
        self.jump_count += 1
@@ -60,8 +62,8 @@ class Player(pygame.sprite.Sprite):
        if not self.is_dead:
            self.hit = True
            self.hit_count += 1
-           if self.hit_count >= 2:
-               self.is_dead = True
+           if self.hit_count >= 4:
+               self.is_dead = False
 
 
    def move_left(self, vel):
@@ -100,7 +102,8 @@ class Player(pygame.sprite.Sprite):
 
 
    def hit_head(self):
-       self.count = 0
+       # change count to jump_count
+       self.jump_count = 0
        self.y_vel *= -1
 
 
