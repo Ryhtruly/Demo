@@ -517,6 +517,7 @@ def main(window):
 
        if player.is_dead:
            restart_button_rect = player.draw(window, offset_x)
+           score_board.score = 0
        else:
            restart_button_rect = None
 

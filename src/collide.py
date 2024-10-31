@@ -5,15 +5,13 @@ from src.fire import Fire
 from src.saw import Saw, Saw_Collum, Saw_Row, Saw_Collum2, Saw_Row2, Saw_Row_N
 from src.fan import FanRow
 from src.food import Food
-from src.block import Block, Block2
 from src.end_of_map import LastPoint
 
 
-def handle_vertical_collision(player, objects, dy, scoreboard):
+def handle_vertical_collision(player, objects, dy, scoreboard, left_obj, right_obj):
     collided_objects = []
     to_remove = []
     collision_food_vertical = False
-    check_list = []
 
     for obj in objects:
         if pygame.sprite.collide_mask(player, obj):
@@ -22,33 +20,24 @@ def handle_vertical_collision(player, objects, dy, scoreboard):
                 to_remove.append(obj)
                 collision_food_vertical = True
                 break
+            if not isinstance(obj, (Saw, Saw_Collum, Saw_Row, Saw_Collum2, Saw_Row2, Saw_Row_N)):
+                if obj not in (left_obj, right_obj):
+                    continue
+
             if dy > 0:
-
-                exist_above_obj = False
-
-                y_cor_to_check = obj.rect.y + 96
-                if isinstance(obj, Block) or isinstance(obj, Block2):
-                    check_list.append(obj)
-
-                for check_block in check_list:
-                    if abs(check_block.rect.y - y_cor_to_check) <= 50:
-                        # print(f"distance to land: {check_block.rect.y - y_cor_to_check}")
-                        exist_above_obj = True
-                        break
-
-                if not exist_above_obj:
                     player.rect.bottom = obj.rect.top
-                    print(f"landed, x: {player.rect.x}, y: {player.rect.y}")
                     player.landed()
                     if isinstance(obj, FanRow):
                         if obj.moving_right:
                             player.rect.x += obj.MOVE_SPEED
                         else:
                             player.rect.x -= obj.MOVE_SPEED
+
             elif dy < 0:
                 player.rect.top = obj.rect.bottom
                 player.hit_head()
                 player.y_vel = 0
+
             collided_objects.append(obj)
 
     for obj in to_remove:
@@ -77,8 +66,8 @@ def handle_move(player, objects, scoreboard):
 
 
    player.x_vel = 0
-   collide_left = collide(player, objects, -PLAYER_VEL)
-   collide_right = collide(player, objects, PLAYER_VEL)
+   collide_left = collide(player, objects, -PLAYER_VEL * 2)
+   collide_right = collide(player, objects, PLAYER_VEL * 2)
 
 
    if keys[pygame.K_LEFT] and not collide_left:
@@ -89,10 +78,12 @@ def handle_move(player, objects, scoreboard):
        player.is_landed = False
 
 
-   vertical_collide, collision_food_vertical = handle_vertical_collision(player, objects, player.y_vel, scoreboard)
+   vertical_collide, collision_food_vertical = handle_vertical_collision(player, objects, player.y_vel, scoreboard, collide_left, collide_right)
    to_check = {collide_left, collide_right, *vertical_collide}
 
    for obj in to_check:
+       if obj is None:
+           continue
 
        if isinstance(obj, (Fire, Saw, Saw_Collum, Saw_Row, Saw_Collum2, Saw_Row2, Saw_Row_N)):
            player.make_hit()

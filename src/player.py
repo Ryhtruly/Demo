@@ -62,7 +62,7 @@ class Player(pygame.sprite.Sprite):
        if not self.is_dead:
            self.hit = True
            self.hit_count += 1
-           if self.hit_count >= 4:
+           if self.hit_count >= 2:
                self.is_dead = False
 
 
@@ -102,8 +102,7 @@ class Player(pygame.sprite.Sprite):
 
 
    def hit_head(self):
-       # change count to jump_count
-       self.jump_count = 0
+       self.count = 0
        self.y_vel *= -1
 
 
