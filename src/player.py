@@ -63,7 +63,7 @@ class Player(pygame.sprite.Sprite):
            self.hit = True
            self.hit_count += 1
            if self.hit_count >= 2:
-               self.is_dead = False
+               self.is_dead = True
 
 
    def move_left(self, vel):
