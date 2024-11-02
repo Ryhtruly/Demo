@@ -39,7 +39,6 @@ class BaseSaw(Block):
             self.animation_count = 0
 
     def move(self):
-        # Được override bởi các lớp con
         pass
 
     def loop(self):
@@ -107,7 +106,6 @@ class HorizontalSaw(MovingSaw):
                 if self.rect.x <= self.start_x:
                     self.moving_positive = True
 
-# Các lớp cụ thể
 class Saw(BaseSaw):
     def __init__(self, x, y, width, height):
         super().__init__(x, y, width, height)

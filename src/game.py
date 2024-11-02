@@ -1,6 +1,8 @@
 import pygame
+import random
 import sys
 import os
+from os.path import join
 from src.player import Player
 from src.block import Block, Block2
 from src.fire import Fire
@@ -10,17 +12,15 @@ from src.confige import WIDTH, HEIGHT, FPS
 from src.spriteLoader import draw
 from src.scoreboard import ScoreBoard, get_player_name
 from src.fan import Fan, Fan_N, Fan_M
-from src.saw import Saw_Row, Saw_Collum, Saw, Saw_Collum2, Saw_Row_N2, Saw_Row_N, Saw_Collum_N, Saw_Collum3
-from os.path import join
+from src.saw import Saw_Row, Saw_Collum, Saw, Saw_Collum2, Saw_Row_N2, Saw_Row_N, Saw_Collum3
 from src.spriteLoader import get_background
-from src.food import Banana, Apple, Strawberry, Melon
+from src.food import Banana, Apple, Strawberry, Melon, Food, Pineapple, Orange, Kiwi
 from src.restart import reset_game
-window = pygame.display.set_mode((WIDTH, HEIGHT))
-
+from src.start_of_map import StartPoint
+from src.end_of_map import LastPoint
 
 pygame.init()
 window = pygame.display.set_mode((WIDTH, HEIGHT))
-
 
 def load_background(name):
     path = join("assets", "Background", name)
@@ -28,7 +28,6 @@ def load_background(name):
     _, _, width, height = image.get_rect()
     image = pygame.transform.scale(image, (WIDTH, HEIGHT))
     return image
-
 
 def load_and_scale(path, size=(100, 100)):
 
@@ -104,11 +103,12 @@ def character_selection_screen(window, character_images):
 
         pygame.display.flip()
 
+
 def main(window):
 
    clock = pygame.time.Clock()
    background, bg_image = get_background("rsz_1new2.png")
-   start_button_rect, exit_button_rect, leaderboard_button = draw_intro_screen(window)
+   start_button_rect, exit_button_rect, leaderboard_button, intro_button = draw_intro_screen(window)
 
    while True:
        action = check_button_event(start_button_rect, exit_button_rect)
@@ -118,7 +118,7 @@ def main(window):
             pygame.quit()
             return
 
-   player_name = get_player_name(window, WIDTH, HEIGHT)
+   player_name = get_player_name(window)
    map_level = 1
 
    if player_name is None:
@@ -137,9 +137,9 @@ def main(window):
    window.blit(text, (WIDTH // 2 - text.get_width() // 2, HEIGHT // 2 - text.get_height() // 2))
    pygame.display.flip()
    pygame.time.wait(2000)
-
    block_size = 96
-
+   start_point = StartPoint(70, HEIGHT - 510)
+   end_point = LastPoint(block_size * 85, HEIGHT - block_size * 7.3)
    player = Player(100, 100, 50, 50, selected_character)
 
    floor = []
@@ -149,10 +149,8 @@ def main(window):
    fans = []
    fan_rows = []
    fires = []
-   foods = []
    ciels = []
    arrows = []
-   foods = []
 
    for i in range(100):
        x = i * block_size
@@ -246,7 +244,7 @@ def main(window):
    for i in range(64, 69, 4):
        x = block_size * ( i + 0.3)
        y = HEIGHT - block_size * 2.5
-       fans.append(Fan_M(x, y, 24, 8, 220))
+       fans.append(Fan_M(x, y, 32, 10, 220))
 
    saw_rows.append(Saw_Row(block_size * 11, HEIGHT - block_size * 6.5, 38, 38))
    saw_rows.append(Saw_Row_N(block_size * 23, HEIGHT - block_size * 1.5, 38, 38, 400))
@@ -259,21 +257,21 @@ def main(window):
    saw_collums.append(Saw_Collum2(block_size * 36.2, HEIGHT - block_size * 8, 38, 38, 200))
    saw_collums.append(Saw_Collum2(block_size * 52.2, HEIGHT - block_size * 6, 38, 38, 400))
    saw_collums.append(Saw_Collum3(block_size * 53.2, HEIGHT - block_size * 2, 38, 38, 400))
-   fans.append(Fan(8.3 * block_size, HEIGHT - block_size * 3, 24, 8))
-   fans.append(Fan(19.3 * block_size, HEIGHT - block_size * 3, 24, 8))
-   fans.append(Fan(34.3 * block_size, HEIGHT - block_size * 2.5, 24, 8))
-   fans.append(Fan_N(35.25 * block_size, HEIGHT - block_size * 2.5, 24, 8, 300))
-   fans.append(Fan_N(35 * block_size, HEIGHT - block_size * 2.5, 24, 8, 300))
-   fans.append(Fan_N(35.5 * block_size, HEIGHT - block_size * 2.5, 24, 8, 300))
-   fans.append(Fan_N(35.75 * block_size, HEIGHT - block_size * 2.5, 24, 8, 300))
-   fans.append(Fan_N(18.25 * block_size, HEIGHT - block_size * 2.5, 24, 8, 200))
-   fans.append(Fan_N(18 * block_size, HEIGHT - block_size * 2.5, 24, 8, 200))
-   fans.append(Fan_N(18.5 * block_size, HEIGHT - block_size * 2.5, 24, 8, 200))
-   fans.append(Fan_N(18.75 * block_size, HEIGHT - block_size * 2.5, 24, 8, 200))
-   fans.append(Fan_M(44.3 * block_size, HEIGHT - block_size * 1.8, 24, 8,330))
-   fans.append(Fan_M(block_size * 56.3 , HEIGHT - block_size * 2.5, 24, 8,180))
-   fans.append(Fan_M(block_size * 58.3, HEIGHT - block_size * 4.5, 24, 8, 180))
-   fans.append(Fan_M(block_size * 24.7, HEIGHT - block_size * 4, 24, 8, 180))
+   fans.append(Fan(8.2 * block_size, HEIGHT - block_size * 2.2, 32, 10))
+   fans.append(Fan(19.2 * block_size, HEIGHT - block_size * 3, 32, 10))
+   fans.append(Fan(34.2 * block_size, HEIGHT - block_size * 2.5, 32, 10))
+   fans.append(Fan_N(35.25 * block_size, HEIGHT - block_size * 2.5, 32, 10, 300))
+   fans.append(Fan_N(35 * block_size, HEIGHT - block_size * 2.5, 32, 10, 300))
+   fans.append(Fan_N(35.5 * block_size, HEIGHT - block_size * 2.5, 32, 10, 300))
+   fans.append(Fan_N(35.75 * block_size, HEIGHT - block_size * 2.5, 32, 10, 300))
+   fans.append(Fan_N(18.25 * block_size, HEIGHT - block_size * 2.5, 32, 10, 200))
+   fans.append(Fan_N(18 * block_size, HEIGHT - block_size * 2.5, 32, 10, 200))
+   fans.append(Fan_N(18.5 * block_size, HEIGHT - block_size * 2.5, 32, 10, 200))
+   fans.append(Fan_N(18.75 * block_size, HEIGHT - block_size * 2.5, 32, 10, 200))
+   fans.append(Fan_M(44.2 * block_size, HEIGHT - block_size * 1.8, 32, 10, 330))
+   fans.append(Fan_M(block_size * 56.2, HEIGHT - block_size * 2.5, 32, 10, 180))
+   fans.append(Fan_M(block_size * 58.2, HEIGHT - block_size * 4.5, 32, 10, 180))
+   fans.append(Fan_M(block_size * 24.7, HEIGHT - block_size * 4, 32, 10, 180))
 
    for i in range(74, 79, 2):
        x = block_size * (i + 0.2 )
@@ -285,9 +283,8 @@ def main(window):
        y = HEIGHT - block_size * 4
        saws.append(Saw_Collum3(x , y , 38 , 38 , 380))
 
-   import random
 
-   food_types = [Banana, Apple, Strawberry, Melon]
+   food_types = [Banana, Apple, Strawberry, Melon, Kiwi, Orange, Pineapple]
 
    food_positions = [
        (4.2, 3.7), (6.2, 3.7), (9.2, 1.7), (11.2, 1.7), (14.2, 1.7),
@@ -322,6 +319,7 @@ def main(window):
        arrow.on()
 
 
+
    objects = [*floor, *ciels,  *saws, *saw_collums, *saw_rows, *fans, *fan_rows, *fires, *foods , *arrows, *foods]
 
 
@@ -330,30 +328,16 @@ def main(window):
        y = HEIGHT- i * block_size
        objects.append(Block(x, y, block_size))
 
-   # Giả sử block_size và HEIGHT đã được định nghĩa ở phần đầu của chương trình
-   def create_block(x, y, block_type, block_size, HEIGHT):
-       return eval(f"{block_type}(block_size * {x}, HEIGHT - block_size * {y}, block_size)")
-
-   # Định nghĩa thông tin blocks
-   block_data = [
-       # Format: (x, y, type)
-       (33, 1, "Block"),
-       (55, 2, "Block2"),
-       (59, 6, "Block2"),
-       (28, 2, "Block2"),
-       (38, 6, "Block2"),
-       (56, 8, "Block2"),
-       (64, 8, "Block2"),
-       (68, 8, "Block2"),
-       (75, 2, "Block2"),
-       (77, 2, "Block2")
-   ]
-
-   # Tạo blocks và thêm vào objects
-   blocks = [create_block(x, y, block_type, block_size, HEIGHT) for x, y, block_type in block_data]
-   objects.extend(blocks)
-
-   objects.extend(blocks)
+   objects.append(Block(block_size * 33, HEIGHT - block_size * 1, block_size))
+   objects.append(Block2(block_size * 55, HEIGHT - block_size * 2, block_size))
+   objects.append(Block2(block_size * 59, HEIGHT - block_size * 6, block_size))
+   objects.append(Block2(block_size * 28, HEIGHT - block_size * 2, block_size))
+   objects.append(Block2(block_size * 38, HEIGHT - block_size * 6, block_size))
+   objects.append(Block2(block_size * 56, HEIGHT - block_size * 8, block_size))
+   objects.append(Block2(block_size * 64, HEIGHT - block_size * 8, block_size))
+   objects.append(Block2(block_size * 68, HEIGHT - block_size * 8, block_size))
+   objects.append(Block2(block_size * 75, HEIGHT - block_size * 2, block_size))
+   objects.append(Block2(block_size * 77, HEIGHT - block_size * 2, block_size))
 
    for i in range(2, 5):
        x = block_size
@@ -464,7 +448,7 @@ def main(window):
        for j in range(2, height + 1):
            block_x = block_size * (start + i )
            block_y = HEIGHT - block_size * (j)
-           objects.append(Block2(block_x, block_y, block_size))\
+           objects.append(Block2(block_x, block_y, block_size))
 
    for i in range(2, 7):
        for j in range(84, 87):
@@ -477,6 +461,7 @@ def main(window):
            x = block_size * j
            y = HEIGHT - block_size * i
            objects.append(Block(x, y, block_size))
+   objects.append(end_point)
 
    offset_x = 0
 
@@ -485,6 +470,11 @@ def main(window):
    run = True
    while run:
        clock.tick(FPS)
+       is_victory = handle_move(player, objects, score_board)
+
+       if is_victory:
+           return
+
        for event in pygame.event.get():
            if event.type == pygame.QUIT:
                run = False
@@ -503,14 +493,16 @@ def main(window):
        player.loop(FPS)
 
        for obj in objects:
-           if isinstance(obj, (Saw, Saw_Collum, Saw_Row, Fire, Fan_N, Fan_M, Fan, Saw_Collum2, Saw_Row_N2, Saw_Row_N, Saw_Collum3, Banana)):
+           if isinstance(obj, (Saw, Saw_Collum, Saw_Row, Fire, Fan_N, Fan_M, Fan, Saw_Collum2, Saw_Row_N2, Saw_Row_N, Saw_Collum3, Food, StartPoint, LastPoint)):
                obj.loop()
+       start_point.loop()
 
        handle_move(player, objects, score_board)
-       draw(window, background, bg_image, player, objects, offset_x, score_board)
+       draw(window, background, bg_image, player, objects, offset_x, score_board, start_point)
 
        if player.is_dead:
            restart_button_rect = player.draw(window, offset_x)
+           score_board.score = 0
        else:
            restart_button_rect = None
 
@@ -523,3 +515,4 @@ def main(window):
 
 if __name__ == "__main__":
    main(window)
+

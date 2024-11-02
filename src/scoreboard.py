@@ -1,6 +1,5 @@
-
 import pygame.font
-from src.confige import FONT_SCORE, WHITE, SCORE_POS, DATA_FILE, FONT_LEADERBOARD, LEADERBOARD_POS
+from src.confige import FONT_SCORE, WHITE, SCORE_POS, DATA_FILE, FONT_LEADERBOARD, GREY, WIDTH, HEIGHT
 from src.spriteLoader import get_highest_score
 import pandas as pd
 from src.spriteLoader import get_background
@@ -20,9 +19,12 @@ class ScoreBoard:
         self.score += 1
 
     def draw_score(self, window):
-        self.text_surface = self.font.render(f"Your Score: {self.score}, HIGHEST SCORE: {self.highest_score}",
-                                             True, WHITE)
-        window.blit(self.text_surface, SCORE_POS)
+        self.text_surface = self.font.render(f"YOUR SCORE: {self.score}           |           HIGHEST SCORE: "
+                                             f"{self.highest_score}",True, WHITE)
+        text_rect = self.text_surface.get_rect(topleft=SCORE_POS)
+        padding = 10
+        pygame.draw.rect(window, GREY, (text_rect.x - padding, text_rect.y - padding, text_rect.width + padding * 2, text_rect.height + padding * 2))
+        window.blit(self.text_surface, text_rect.topleft)
 
     def update_data(self):
         """use at the end of game"""
@@ -44,12 +46,12 @@ class ScoreBoard:
         leaderboard.to_csv(DATA_FILE, index=False)
 
 
-def get_player_name(window, WIDTH, HEIGHT):
+def get_player_name(window):
     pygame.font.init()
     font = pygame.font.SysFont(None, 48)
     input_box = pygame.Rect(WIDTH // 2 - 100, HEIGHT // 2 - 25, 200, 50)
-    color_inactive = pygame.Color('lightskyblue3')
-    color_active = pygame.Color('dodgerblue2')
+    color_inactive = pygame.Color('light gray')
+    color_active = pygame.Color('deepskyblue')
     color = color_inactive
     active = False
     text = ''

@@ -8,7 +8,7 @@ class BaseFan(Block):
 
     def __init__(self, x, y, width, height):
         super().__init__(x, y, width)
-        self.fan_images = load_sprite_sheets("Traps", "Fan", width, height)
+        self.fan_images = load_sprite_sheets("Traps", "Falling Platforms", width, height)
         self.frames = self.fan_images["Off"]
         self.image = self.frames[0]
         self.rect = self.image.get_rect(topleft=(x, y))
@@ -43,7 +43,6 @@ class BaseFan(Block):
         self.move()
 
     def move(self):
-        # Được override bởi các lớp con
         pass
 
 class VerticalFan(BaseFan):
@@ -80,7 +79,6 @@ class HorizontalFan(BaseFan):
             if self.rect.x <= self.start_x:
                 self.moving_right = True
 
-# Các lớp cũ có thể được thay thế bằng các lớp mới như sau:
 class Fan(VerticalFan):
     def __init__(self, x, y, width, height):
         super().__init__(x, y, width, height, 400)
