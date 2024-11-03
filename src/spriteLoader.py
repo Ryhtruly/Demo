@@ -20,7 +20,6 @@ def load_sprite_sheets(dir1, dir2, width, height, directon = False):
    for image in images:
        sprite_sheet = pygame.image.load(os.path.join(path, image))
 
-
        sprites = []
        for i in range(sprite_sheet.get_width() // width):
            surface = pygame.Surface((width,height), pygame.SRCALPHA, 32)
@@ -37,8 +36,6 @@ def load_sprite_sheets(dir1, dir2, width, height, directon = False):
 
 
    # print("All Sprites Loaded:", all_sprites)
-
-
    return all_sprites
 
 def load_block(size):

@@ -25,10 +25,6 @@ class Food(Object):
 
         self.mask = pygame.mask.from_surface(self.image)
 
-    # # @override draw method
-    # def draw(self, win, offset_x):
-    #     win.blit(self.sprite,  (self.rect.x - offset_x, self.rect.y))
-
 
 class Banana(Food):
     def __init__(self, x, y):
@@ -48,3 +44,18 @@ class Strawberry(Food):
 class Melon(Food):
     def __init__(self, x, y):
         super().__init__(x, y, "Melon")
+
+
+class Kiwi(Food):
+    def __init__(self, x, y):
+        super().__init__(x, y, "Kiwi")
+
+
+class Orange(Food):
+    def __init__(self, x, y):
+        super().__init__(x, y, "Orange")
+
+
+class Pineapple(Food):
+    def __init__(self, x, y):
+        super().__init__(x, y, "Pineapple")

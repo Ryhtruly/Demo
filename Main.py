@@ -51,6 +51,7 @@ def main_loop():
                     if event.type == pygame.QUIT:
                         print("Quit event detected.")
                         running = False
+                        in_leaderboard = False
                     elif event.type == pygame.MOUSEBUTTONDOWN:
                         mouse_pos = pygame.mouse.get_pos()
                         print(f"Mouse clicked LeaderBoard at {mouse_pos}")
@@ -64,6 +65,7 @@ def main_loop():
                 for event in pygame.event.get():
                     if event.type == pygame.QUIT:
                         running = False
+                        in_introduction = False
                     elif event.type == pygame.MOUSEBUTTONDOWN:
                         mouse_pos = pygame.mouse.get_pos()
                         if return_button.collidepoint(mouse_pos):

@@ -4,7 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="013c4596-3b70-4637-89cb-dff39b41b041" name="Changes" comment="" />
+    <list default="true" id="013c4596-3b70-4637-89cb-dff39b41b041" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/leaderboard.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/leaderboard.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/collide.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/collide.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/food.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/food.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/map.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scoreboard.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/scoreboard.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/spriteLoader.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/spriteLoader.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -30,7 +40,7 @@
                 <list>
                   <RecentBranch>
                     <option name="branchName" value="democode" />
-                    <option name="lastUsedInstant" value="1729744806" />
+                    <option name="lastUsedInstant" value="1730573634" />
                   </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="main" />
@@ -60,27 +70,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Python.Main.executor&quot;: &quot;Run&quot;,
-    &quot;Python.block.executor&quot;: &quot;Run&quot;,
-    &quot;Python.collide.executor&quot;: &quot;Run&quot;,
-    &quot;Python.end_of_map.executor&quot;: &quot;Run&quot;,
-    &quot;Python.food.executor&quot;: &quot;Run&quot;,
-    &quot;Python.game.executor&quot;: &quot;Run&quot;,
-    &quot;Python.gui.executor&quot;: &quot;Run&quot;,
-    &quot;Python.player.executor&quot;: &quot;Run&quot;,
-    &quot;Python.scoreboard.executor&quot;: &quot;Run&quot;,
-    &quot;Python.spriteLoader.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Admin/PycharmProjects/py_jump&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Python.Main.executor": "Run",
+    "Python.block.executor": "Run",
+    "Python.collide.executor": "Run",
+    "Python.end_of_map.executor": "Run",
+    "Python.food.executor": "Run",
+    "Python.game.executor": "Run",
+    "Python.gui.executor": "Run",
+    "Python.player.executor": "Run",
+    "Python.scoreboard.executor": "Run",
+    "Python.spriteLoader.executor": "Run",
+    "Python.start_of_map.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/Admin/PycharmProjects/py_jump",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "editor.preferences.fonts.default"
   }
-}</component>
+}]]></component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>

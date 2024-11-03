@@ -95,6 +95,7 @@ def draw_leaderboard_screen(window):
         leaderboard = pd.read_csv(DATA_FILE)
     except (FileNotFoundError, pd.errors.EmptyDataError):
         leaderboard = pd.DataFrame(columns=['name', 'score', 'map'])
+        leaderboard.to_csv(DATA_FILE, index=False)
 
     window.fill(BLACK)
 

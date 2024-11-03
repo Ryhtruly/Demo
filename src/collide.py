@@ -20,6 +20,7 @@ def handle_vertical_collision(player, objects, dy, scoreboard, left_obj, right_o
                 to_remove.append(obj)
                 collision_food_vertical = True
                 break
+
             if not isinstance(obj, (Saw, Saw_Collum, Saw_Row, Saw_Collum2, Saw_Row2, Saw_Row_N)):
                 if obj not in (left_obj, right_obj):
                     continue
@@ -72,10 +73,10 @@ def handle_move(player, objects, scoreboard):
 
    if keys[pygame.K_LEFT] and not collide_left:
        player.move_left(PLAYER_VEL)
-       player.is_landed = False
+       # player.is_landed = False
    if keys[pygame.K_RIGHT] and not collide_right:
        player.move_right(PLAYER_VEL)
-       player.is_landed = False
+       # player.is_landed = False
 
 
    vertical_collide, collision_food_vertical = handle_vertical_collision(player, objects, player.y_vel, scoreboard, collide_left, collide_right)

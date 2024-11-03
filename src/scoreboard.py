@@ -42,13 +42,12 @@ class ScoreBoard:
             leaderboard = new_data
 
         leaderboard = leaderboard.sort_values(by='score', ascending=False)
-        self.highest_score = leaderboard.iloc[0]
 
         leaderboard.to_csv(DATA_FILE, index=False)
 
 
 def get_player_name(window):
-    pygame.font.init()
+
     font = pygame.font.SysFont(None, 48)
     input_box = pygame.Rect(WIDTH // 2 - 100, HEIGHT // 2 - 25, 200, 50)
     color_inactive = pygame.Color('light gray')
